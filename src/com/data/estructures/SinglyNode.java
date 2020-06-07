@@ -9,9 +9,12 @@ public class SinglyNode<T> {
         this.value=value;
     }
 
-
     T getValue(){
         return this.value;
+    }
+
+    public void setValue(T value) {
+        this.value = value;
     }
 
     public SinglyNode<T> getNext() {
@@ -21,4 +24,6 @@ public class SinglyNode<T> {
     public void setNext(SinglyNode<T> next) {
         this.next = next;
     }
+
+
 }

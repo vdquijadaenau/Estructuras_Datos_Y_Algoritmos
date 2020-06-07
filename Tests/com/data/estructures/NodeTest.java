@@ -15,7 +15,7 @@ class NodeTest {
 
     @Test
     void getNull() {
-        assertEquals(nodo.next,null);
+        assertEquals(nodo.getNext(),null);
     }
 
 }
