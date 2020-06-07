@@ -43,7 +43,7 @@ public class SinglyLinkList<T> implements Colecciones<T>{
     /**
      * Returns the element at the specified position in this list
      *
-     * @param index
+     * @param index of the element
      * @return element at index position
      * @throws IndexOutOfBoundsException - if the index is out of range (index < 0 || index >= size())
      */
@@ -68,7 +68,7 @@ public class SinglyLinkList<T> implements Colecciones<T>{
     /**
      * Evaluate if the index is valid in the collection
      *
-     * @param index
+     * @param index of the collection
      * @return true is the index is <= the size of collection
      */
     @Override
@@ -76,14 +76,16 @@ public class SinglyLinkList<T> implements Colecciones<T>{
         return false;
     }
 
-    /**
-     * Returns an iterator over the elements in this collection. There are no guarantees concerning the order in which
-     * the elements are returned (unless this collection is an instance of some class that provides a guarantee).
-     * Specified by:
-     * iterator in interface Iterable<E>
-     *
-     * @return an Iterator over the elements in this collection
-     **/
+//    /**
+//     * Returns an iterator over the elements in this collection. There are no guarantees concerning the order in which
+//     * the elements are returned (unless this collection is an instance of some class that provides a guarantee).
+//     * Specified by:
+//     * iterator in interface Iterable<E>
+//     *
+//     * @return an Iterator over the elements in this collection
+//     **/
+    /* TODO
+     */
     @Override
     public Iterator<T> iterator() {
         return null;
@@ -97,7 +99,7 @@ public class SinglyLinkList<T> implements Colecciones<T>{
      * The caller is thus free to modify the returned array.
      * This method acts as bridge between array-based and collection-based APIs.
      *
-     * @return: an array containing all of the elements in this collection
+     * @return an array containing all of the elements in this collection
      **/
     @Override
     public Object[] toArray() {
@@ -133,7 +135,7 @@ public class SinglyLinkList<T> implements Colecciones<T>{
      *          a new array of the same runtime type is allocated for this purpose.
      * @throws ArrayStoreException  if the runtime type of the specified array is not a supertype of the runtime type of every element in this collection
      * @throws NullPointerException if the specified array is null
-     * @returns an array containing all of the elements in this collection
+     * @return an array containing all of the elements in this collection
      */
     @Override
     public <A> A[] toArray(A[] a) {
@@ -173,7 +175,7 @@ public class SinglyLinkList<T> implements Colecciones<T>{
      * does not contain the element.
      * More formally, returns the lowest index i such that (o==null ? get(i)==null : o.equals(get(i))), or -1 if there is no such index.
      *
-     * @param o
+     * @param o object
      * @return index of object o
      */
     @Override
@@ -186,8 +188,8 @@ public class SinglyLinkList<T> implements Colecciones<T>{
      * if this list does not contain the element.
      * More formally, returns the highest index i such that (o==null ? get(i)==null : o.equals(get(i))), or -1 if there is no such index.
      *
-     * @param o
-     * @return
+     * @param o object to be search
+     * @return int occurrence of the object in the collection
      */
     @Override
     public int lastIndexOf(Object o) {
@@ -215,7 +217,7 @@ public class SinglyLinkList<T> implements Colecciones<T>{
      * Removes the element at the specified position in this list.
      * Shifts any subsequent elements to the left (subtracts one from their indices)
      *
-     * @param index
+     * @param index of the element to remove
      * @return the element that was removed from the list
      * @throws IndexOutOfBoundsException - if the index is out of range (index < 0 || index >= size()
      */
@@ -285,7 +287,7 @@ public class SinglyLinkList<T> implements Colecciones<T>{
      *                                       does not permit null elements (optional), or if the specified collection is null
      *                                       See Also:
      *                                       remove(Object), contains(Object)
-     * @eturn true if this collection changed as a result of the call
+     * @return true if this collection changed as a result of the call
      */
     @Override
     public boolean retainAll(Collection<?> c) {
