@@ -1,7 +1,6 @@
 package com.data.estructures;
 
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.Iterator;
 
 public class SinglyLinkList<T> implements Colecciones<T>{
