@@ -52,7 +52,7 @@ public interface Colecciones<T> extends Iterable<T> {
 
     /**
      * Returns the element at the specified position in this list
-     * @param index
+     * @param index of the element
      * @return element at index position
      * @throws IndexOutOfBoundsException - if the index is out of range (index < 0 || index >= size())
      */
@@ -70,8 +70,8 @@ public interface Colecciones<T> extends Iterable<T> {
 
     /**
      * Evaluate if the index is valid in the collection
-     * @param index
-     * @return true is the index is <= the size of collection
+     * @param index - index to validate
+     * @return true is the index is <= the size of collection or index >= 0
      */
     boolean validIndex(int index);
 
@@ -92,7 +92,7 @@ public interface Colecciones<T> extends Iterable<T> {
     this method must allocate a new array even if this collection is backed by an array).
     The caller is thus free to modify the returned array.
     This method acts as bridge between array-based and collection-based APIs.
-    @return: an array containing all of the elements in this collection
+    @return an array containing all of the elements in this collection
      **/
     Object[] toArray();
 
@@ -122,7 +122,7 @@ public interface Colecciones<T> extends Iterable<T> {
     Parameters:
     @param a - the array into which the elements of this collection are to be stored, if it is big enough; otherwise,
     a new array of the same runtime type is allocated for this purpose.
-    @returns an array containing all of the elements in this collection
+    @return an array containing all of the elements in this collection
     @throws ArrayStoreException
     if the runtime type of the specified array is not a supertype of the runtime type of every element in this collection
     @throws NullPointerException
@@ -158,7 +158,7 @@ public interface Colecciones<T> extends Iterable<T> {
      * Returns the index of the first occurrence of the specified element in this list, or -1 if this list
      * does not contain the element.
      * More formally, returns the lowest index i such that (o==null ? get(i)==null : o.equals(get(i))), or -1 if there is no such index.
-     * @param o
+     * @param o element to be search in the collection
      * @return index of object o
      */
     int indexOf(Object o);
@@ -167,8 +167,8 @@ public interface Colecciones<T> extends Iterable<T> {
      * Returns the index of the first occurrence of the specified element in this list, or -1
      * if this list does not contain the element.
      * More formally, returns the highest index i such that (o==null ? get(i)==null : o.equals(get(i))), or -1 if there is no such index.
-     * @param o
-     * @return
+     * @param o object in the collection
+     * @return int representing the last occurence of the object in the collection
      */
     int lastIndexOf(Object o);
 
@@ -189,7 +189,7 @@ public interface Colecciones<T> extends Iterable<T> {
     /**
      * Removes the element at the specified position in this list.
      * Shifts any subsequent elements to the left (subtracts one from their indices)
-     * @param index
+     * @param index of the element to be removed
      * @return the element that was removed from the list
      * @throws IndexOutOfBoundsException - if the index is out of range (index < 0 || index >= size()
      */
@@ -234,22 +234,12 @@ public interface Colecciones<T> extends Iterable<T> {
     **/
     boolean removeAll(Collection<?> c);
 
-    /**
-    Removes all of the elements of this collection that satisfy the given predicate. Errors or runtime exceptions thrown during iteration or by the predicate are relayed to the caller.
-    Implementation Requirements:
-    The default implementation traverses all elements of the collection using its iterator(). Each matching element is removed using Iterator.remove(). If the collection's iterator does not support removal then an UnsupportedOperationException will be thrown on the first matching element.
-    @param      filter - a predicate which returns true for elements to be removed
-    @return     true if any elements were removed
-    @exception  NullPointerException - if the specified filter is null
-    @exception  UnsupportedOperationException - if elements cannot be removed from this collection. Implementations may throw this exception if a matching element cannot be removed or if, in general, removal is not supported.
-    default boolean removeIf(Predicate<? super T> filter);
-    **/
 
     /**
     Retains only the elements in this collection that are contained in the specified collection (optional operation).
     In other words, removes from this collection all of its elements that are not contained in the specified collection.
     @param c - collection containing elements to be retained in this collection
-    @eturn true if this collection changed as a result of the call
+    @return true if this collection changed as a result of the call
     @throws UnsupportedOperationException - if the retainAll operation is not supported by this collection
     @throws ClassCastException - if the types of one or more elements in this collection are incompatible with the specified collection (optional)
     @throws NullPointerException - if this collection contains one or more null elements and the specified collection
@@ -265,48 +255,4 @@ public interface Colecciones<T> extends Iterable<T> {
     *@throws UnsupportedOperationException - if the clear operation is not supported by this collection
     */
     void clear();
-
-    /**
-    equals()
-    Compares the specified object with this collection for equality.
-    While the Collection interface adds no stipulations to the general contract for the Object.equals, programmers who implement the Collection
-    interface "directly" (in other words, create a class that is a Collection but is not a Set or a List) must exercise care if they choose to
-    override the Object.equals. It is not necessary to do so, and the simplest course of action is to rely on Object's implementation,
-    but the implementor may wish to implement a "value comparison" in place of the default "reference comparison."
-    (The List and Set interfaces mandate such value comparisons.)
-    The general contract for the Object.equals method states that equals must be symmetric
-    (in other words, a.equals(b) if and only if b.equals(a)). The contracts for List.equals and Set.equals state that
-    lists are only equal to other lists, and sets to other sets. Thus, a custom equals method for a collection class
-    that implements neither the List nor Set interface must return false when this collection is compared to any list or set.
-    (By the same logic, it is not possible to write a class that correctly implements both the Set and List interfaces.)
-
-    Overrides:
-    equals in class Object
-    @aram o - object to be compared for equality with this collection
-    @return true if the specified object is equal to this collection
-    See Also:
-            Object.equals(Object), Set.equals(Object), List.equals(Object)
-    */
-    boolean equals(Object o);
-
-
-
-    /**  hashCode()
-    Returns the hash code value for this collection.
-    While the Collection interface adds no stipulations to the general contract for the Object.hashCode method,
-    programmers should take note that any class that overrides the Object.equals method must also override
-    the Object.hashCode method in order to satisfy the general contract for the Object.hashCode method.
-    In particular, c1.equals(c2) implies that c1.hashCode()==c2.hashCode().
-    Overrides:
-        hashCode in class Object
-    @return the hash code value for this collection
-    */
-    int hashCode();
-
-    /**
-     * String representation of the collection
-     * @return string representation of the collection
-     * overrides toString() method
-     */
-    String toString();
 }
