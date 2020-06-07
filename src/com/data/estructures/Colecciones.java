@@ -3,6 +3,30 @@ package com.data.estructures;
 import java.util.Collection;
 import java.util.Iterator;
 
+/**
+ * Methods
+ * int size();
+ * boolean validIndex(int index);
+ * boolean isEmpty();
+ * boolean Contains(Object o);
+ * T get(int index);
+ * T set(int index, T element)
+ * int indexOf(Object o);
+ * int lastIndexOf(Object o)
+ * String toString();
+ * Iterator<T> iterator();
+ * Object[] toArray();
+ * boolean add(T e);
+ * boolean remove(Object o);
+ * T remove(int index);
+ * boolean containsAll(Collection<?> c);
+ * boolean addAll(Collection<? extends T> c);
+ * boolean removeAll(Collection<?> c);
+ * boolean retainAll(Collection<?> c);
+ * void clear();
+ * String toString();
+ * */
+
 public interface Colecciones<T> extends Iterable<T> {
 
     /**
@@ -25,6 +49,31 @@ public interface Colecciones<T> extends Iterable<T> {
     *@exception NullPointerException - if the specified element is null and this collection does not permit null elements (optional)
     **/
     boolean contains(Object o);
+
+    /**
+     * Returns the element at the specified position in this list
+     * @param index
+     * @return element at index position
+     * @throws IndexOutOfBoundsException - if the index is out of range (index < 0 || index >= size())
+     */
+     T get(int index);
+
+
+    /**
+     * Replaces the element at the specified position in this list with the specified element.
+     * @param index - index of the element to replace
+     * @param element - index of the element to replace
+     * @return the element previously at the specified position
+     * @throws IndexOutOfBoundsException - if the index is out of range (index < 0 || index >= size())
+     */
+    T set(int index, T element);
+
+    /**
+     * Evaluate if the index is valid in the collection
+     * @param index
+     * @return true is the index is <= the size of collection
+     */
+    boolean validIndex(int index);
 
 
     /**
@@ -105,6 +154,24 @@ public interface Colecciones<T> extends Iterable<T> {
      **/
     boolean add(T e);
 
+    /**
+     * Returns the index of the first occurrence of the specified element in this list, or -1 if this list
+     * does not contain the element.
+     * More formally, returns the lowest index i such that (o==null ? get(i)==null : o.equals(get(i))), or -1 if there is no such index.
+     * @param o
+     * @return index of object o
+     */
+    int indexOf(Object o);
+
+    /**
+     * Returns the index of the first occurrence of the specified element in this list, or -1
+     * if this list does not contain the element.
+     * More formally, returns the highest index i such that (o==null ? get(i)==null : o.equals(get(i))), or -1 if there is no such index.
+     * @param o
+     * @return
+     */
+    int lastIndexOf(Object o);
+
 
     /**
     Removes a single instance of the specified element from this collection, if it is present (optional operation).
@@ -118,6 +185,15 @@ public interface Colecciones<T> extends Iterable<T> {
     @throws UnsupportedOperationException - if the remove operation is not supported by this collection
      */
     boolean remove(Object o);
+
+    /**
+     * Removes the element at the specified position in this list.
+     * Shifts any subsequent elements to the left (subtracts one from their indices)
+     * @param index
+     * @return the element that was removed from the list
+     * @throws IndexOutOfBoundsException - if the index is out of range (index < 0 || index >= size()
+     */
+    T remove(int index);
 
 
     /**
@@ -185,10 +261,9 @@ public interface Colecciones<T> extends Iterable<T> {
 
 
     /**
-    Removes all of the elements from this collection (optional operation). The collection will be empty after this method returns.
-    @throws:
-    @throws UnsupportedOperationException - if the clear operation is not supported by this collection
-     */
+    *Removes all of the elements from this collection (optional operation). The collection will be empty after this method returns.
+    *@throws UnsupportedOperationException - if the clear operation is not supported by this collection
+    */
     void clear();
 
     /**
