@@ -5,6 +5,8 @@ public class SinglyNode<T> {
     T value;
     private SinglyNode<T> next;
 
+    SinglyNode(){}
+
     SinglyNode(T value){
         this.value=value;
     }

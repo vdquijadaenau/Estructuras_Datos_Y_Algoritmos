@@ -27,7 +27,7 @@ import java.util.Iterator;
  * String toString();
  * */
 
-public interface Colecciones<T> extends Iterable<T> {
+public interface Colecciones<T> {
 
     /**
     *    @return the number of elements in this collection. If this collection contains more than Integer.MAX_VALUE
@@ -83,7 +83,7 @@ public interface Colecciones<T> extends Iterable<T> {
      *iterator in interface Iterable<E>
      *@return an Iterator over the elements in this collection
      **/
-    Iterator<T> iterator();
+   // Iterator<T> iterator();
 
     /**
     Returns an array containing all of the elements in this collection. If this collection makes any guarantees as to

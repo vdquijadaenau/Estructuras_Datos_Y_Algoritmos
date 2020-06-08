@@ -3,10 +3,10 @@ package com.data.estructures;
 import java.util.Collection;
 import java.util.Iterator;
 
-public class SinglyLinkList<T> implements Colecciones<T>{
-    int size = 0;
-    SinglyNode<T> head = null;
-    SinglyNode<T> tail = null;
+public class SinglyLinkList<T> implements Colecciones<T>, Iterable<SinglyNode<T>>{
+    private int listSize = 0;
+    SinglyNode<T> head = new SinglyNode<>();
+    SinglyNode<T> tail = new SinglyNode<>();
 
     /**
      * @return the number of elements in this collection. If this collection contains more than Integer.MAX_VALUE
@@ -14,7 +14,7 @@ public class SinglyLinkList<T> implements Colecciones<T>{
      **/
     @Override
     public int size() {
-        return 0;
+        return this.listSize;
     }
 
     /**
@@ -86,8 +86,8 @@ public class SinglyLinkList<T> implements Colecciones<T>{
     /* TODO
      */
     @Override
-    public Iterator<T> iterator() {
-        return null;
+    public Iterator<SinglyNode<T>> iterator() {
+        return new ListIterator(head);
     }
 
     /**
@@ -165,8 +165,26 @@ public class SinglyLinkList<T> implements Colecciones<T>{
      * @throws IllegalStateException         - if the element cannot be added at this time due to insertion restrictions
      */
     @Override
-    public boolean add(T e) {
-        return false;
+    public boolean add(T e) throws NullPointerException {
+        if(e==null){
+            throw  new NullPointerException("Collection does not permit null elements");
+        }
+        if(listSize==0){
+            SinglyNode<T> node = new SinglyNode<>(e);
+            head.setNext(node);
+            node.setNext(tail);
+            this.listSize+=1;
+            return true;
+        }
+        SinglyNode<T> current = head;
+        SinglyNode<T> toAdd = new SinglyNode<>(e);
+        while(current.getNext()!=null ){
+           current = current.getNext();
+           }
+        this.listSize+=1;
+        current.setNext(toAdd);
+        toAdd.setNext(tail);
+        return true;
     }
 
     /**
@@ -328,5 +346,38 @@ public class SinglyLinkList<T> implements Colecciones<T>{
     @Override
     public String toString() {
         return super.toString();
+    }
+
+    public class ListIterator implements Iterator<SinglyNode<T>>{
+        private SinglyNode<T> current;
+
+        public ListIterator(SinglyNode<T> first){
+        this.current = first;
+        }
+        /**
+         * Returns {@code true} if the iteration has more elements.
+         * (In other words, returns {@code true} if {@link #next} would
+         * return an element rather than throwing an exception.)
+         *
+         * @return {@code true} if the iteration has more elements
+         */
+        @Override
+        public boolean hasNext() {
+            return current!=null;
+        }
+
+        /**
+         * Returns the next element in the iteration.
+         *
+         * @return the next element in the iteration
+         * @throws NullPointerException if the iteration has no more elements
+         */
+        @Override
+        public SinglyNode<T> next() {
+            if(current == null) throw new NullPointerException("Element in the collection is null");
+            SinglyNode<T> temp = current;
+            current = current.getNext();
+            return temp;
+        }
     }
 }
