@@ -6,7 +6,7 @@ import java.util.Iterator;
 public class SinglyLinkList<T> implements Colecciones<T>, Iterable<SinglyNode<T>>{
     private int listSize = 0;
     SinglyNode<T> head = new SinglyNode<>();
-    SinglyNode<T> tail = new SinglyNode<>();
+    SinglyNode<T> tail = null;
 
     /**
      * @return the number of elements in this collection. If this collection contains more than Integer.MAX_VALUE
@@ -22,7 +22,7 @@ public class SinglyLinkList<T> implements Colecciones<T>, Iterable<SinglyNode<T>
      **/
     @Override
     public boolean isEmpty() {
-        return false;
+        return listSize==0;
     }
 
     /**
@@ -61,6 +61,9 @@ public class SinglyLinkList<T> implements Colecciones<T>, Iterable<SinglyNode<T>
      */
     @Override
     public T set(int index, T element) {
+        if(!this.validIndex(index)){
+            throw new IndexOutOfBoundsException("Index must be > 0 and <= size of list");
+        }
         return null;
     }
 
@@ -72,7 +75,7 @@ public class SinglyLinkList<T> implements Colecciones<T>, Iterable<SinglyNode<T>
      */
     @Override
     public boolean validIndex(int index) {
-        return false;
+        return !(index<0) && index<=this.listSize;
     }
 
 //    /**
@@ -168,8 +171,8 @@ public class SinglyLinkList<T> implements Colecciones<T>, Iterable<SinglyNode<T>
     public boolean add(T e) throws NullPointerException {
         if(e==null){
             throw  new NullPointerException("Collection does not permit null elements");
-        }
-        if(listSize==0){
+        };
+        if(this.isEmpty()){
             SinglyNode<T> node = new SinglyNode<>(e);
             head.setNext(node);
             node.setNext(tail);
@@ -179,11 +182,11 @@ public class SinglyLinkList<T> implements Colecciones<T>, Iterable<SinglyNode<T>
         SinglyNode<T> current = head;
         SinglyNode<T> toAdd = new SinglyNode<>(e);
         while(current.getNext()!=null ){
-           current = current.getNext();
-           }
-        this.listSize+=1;
+            current = current.getNext();
+        }
         current.setNext(toAdd);
         toAdd.setNext(tail);
+        this.listSize++;
         return true;
     }
 
@@ -197,7 +200,17 @@ public class SinglyLinkList<T> implements Colecciones<T>, Iterable<SinglyNode<T>
      */
     @Override
     public int indexOf(Object o) {
-        return 0;
+        if(o==null || this.isEmpty()){return -1;}
+        SinglyNode<T> current = this.head;
+        int index = 0;
+        while(current.getNext()!=null){
+            if(current.getValue().equals(0)){
+                return index;
+            }
+            current = current.getNext();
+            index++;
+        }
+        return -1;
     }
 
     /**
@@ -210,6 +223,7 @@ public class SinglyLinkList<T> implements Colecciones<T>, Iterable<SinglyNode<T>
      */
     @Override
     public int lastIndexOf(Object o) {
+        if(isEmpty()){return -1;}
         return 0;
     }
 
@@ -345,7 +359,14 @@ public class SinglyLinkList<T> implements Colecciones<T>, Iterable<SinglyNode<T>
      */
     @Override
     public String toString() {
-        return super.toString();
+        SinglyNode<T> current = this.head.getNext();
+        String lista = "{";
+        while(current!=tail){
+            lista=lista + current.toString();
+            current = current.getNext();
+            if(current!=null){lista+=",";}
+        }
+        return lista+ "}";
     }
 
     public class ListIterator implements Iterator<SinglyNode<T>>{
